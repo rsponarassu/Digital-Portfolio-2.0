@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+  <rect width="1200" height="850" fill="#f7f4ed"/>
+  <rect x="34" y="34" width="1132" height="782" fill="none" stroke="#171717" stroke-width="2"/>
+  <rect x="52" y="52" width="1096" height="746" fill="none" stroke="#c31f29"/>
+  <circle cx="600" cy="128" r="42" fill="#c31f29"/>
+  <path d="M579 128h42M600 107v42" stroke="#fff" stroke-width="5"/>
+  <text x="600" y="222" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">GOOGLE CAREER CERTIFICATES</text>
+  <text x="600" y="320" text-anchor="middle" fill="#c31f29" font-family="Georgia, serif" font-size="32" font-style="italic">Certificate of Completion</text>
+  <text x="600" y="405" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="20" letter-spacing="3">THIS CERTIFIES THAT</text>
+  <text x="600" y="485" text-anchor="middle" fill="#171717" font-family="Georgia, serif" font-size="58">Mara Vale</text>
+  <line x1="360" y1="510" x2="840" y2="510" stroke="#c31f29"/>
+  <text x="600" y="565" text-anchor="middle" fill="#444" font-family="Arial, sans-serif" font-size="19">has successfully completed the professional program in</text>
+  <text x="600" y="615" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="28" font-weight="bold">UX DESIGN</text>
+  <text x="220" y="720" text-anchor="middle" fill="#555" font-family="Arial, sans-serif" font-size="14">Issued June 2023</text>
+  <path d="M865 710h145" stroke="#171717"/>
+  <text x="937" y="735" text-anchor="middle" fill="#555" font-family="Arial, sans-serif" font-size="13">Program Director</text>
+</svg>

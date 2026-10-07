@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Manrope", sans-serif;
+  font-synthesis: none;
+  scroll-behavior: smooth;
+}
+
+html {
+  background: #090909;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+.font-serif {
+  font-family: "DM Serif Display", serif;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center top;
+}
+
+.red-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px #ef2b2d;
+  text-stroke: 2px #ef2b2d;
+}
+
+.status-dot {
+  box-shadow: 0 0 0 6px rgba(239, 43, 45, 0.12), 0 0 24px #ef2b2d;
+}
+
+.project-photo {
+  filter: saturate(0.15) contrast(1.08);
+}
+
+.project-card:hover .project-photo {
+  filter: saturate(0.85) contrast(1.04);
+}
+
+.portrait-frame::before,
+.portrait-frame::after {
+  position: absolute;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-color: #ef2b2d;
+  content: "";
+  pointer-events: none;
+}
+
+.portrait-frame::before {
+  top: 12px;
+  left: 12px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.portrait-frame::after {
+  right: 12px;
+  bottom: 12px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.profile-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 999px;
+  background: #fff;
+  transition: opacity 150ms ease;
+}
+
+.custom-cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  margin-left: -17px;
+  border: 1px solid #ef2b2d;
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(239, 43, 45, 0.25);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    margin 180ms ease,
+    opacity 150ms ease,
+    background-color 180ms ease;
+}
+
+.custom-cursor-dot.cursor-visible,
+.custom-cursor-ring.cursor-visible {
+  opacity: 1;
+}
+
+.custom-cursor-ring.cursor-hover {
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  margin-left: -26px;
+  background: rgba(239, 43, 45, 0.12);
+}
+
+.custom-cursor-ring.cursor-click {
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  border-width: 3px;
+  background: rgba(239, 43, 45, 0.25);
+}
+
+.certificate-modal {
+  animation: certificate-in 240ms ease-out both;
+}
+
+@keyframes certificate-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee div {
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee div {
+    animation: none;
+  }
+
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-grid {
+    background-size: 40px 40px;
+  }
+
+  .red-outline {
+    -webkit-text-stroke-width: 1px;
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+  <rect width="1200" height="850" fill="#f3efe4"/>
+  <path d="M0 0h240L0 240zM1200 850H960l240-240z" fill="#b51620"/>
+  <rect x="48" y="48" width="1104" height="754" fill="none" stroke="#171717" stroke-width="2"/>
+  <text x="90" y="130" fill="#b51620" font-family="Arial, sans-serif" font-size="42" font-weight="bold">IDEO.</text>
+  <text x="600" y="245" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="22" letter-spacing="9">CERTIFICATE OF ACHIEVEMENT</text>
+  <text x="600" y="342" text-anchor="middle" fill="#555" font-family="Georgia, serif" font-size="24" font-style="italic">Presented to</text>
+  <text x="600" y="440" text-anchor="middle" fill="#b51620" font-family="Georgia, serif" font-size="70">Mara Vale</text>
+  <path d="M330 468h540" stroke="#171717"/>
+  <text x="600" y="540" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="21">for completing the IDEO Design Kit course</text>
+  <text x="600" y="590" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="31" font-weight="bold">HUMAN-CENTERED DESIGN</text>
+  <circle cx="600" cy="685" r="42" fill="none" stroke="#b51620" stroke-width="3"/>
+  <path d="M582 685h36M600 667v36" stroke="#b51620" stroke-width="3"/>
+  <text x="600" y="760" text-anchor="middle" fill="#555" font-family="Arial, sans-serif" font-size="14">Issued November 2022 · IDEO Design Kit</text>
+</svg>
