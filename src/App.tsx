@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
+
+const CONTACT_EMAIL = "rspprof6827@gmail.com"
+const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent("Project Inquiry — Ponarassu RS")}`
 
 const projects = [
   {
@@ -43,7 +46,7 @@ const projects = [
     creditUrl: "https://unsplash.com",
     color: "#d7ff56",
   },
-];
+]
 
 const certifications = [
   {
@@ -51,13 +54,17 @@ const certifications = [
     issuer: "Google",
     image: "/certificates/google-ux.svg",
   },
-];
+]
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
     <svg
       aria-hidden="true"
-      className={`size-5 transition-transform duration-300 ${diagonal ? "group-hover:translate-x-1 group-hover:-translate-y-1" : "group-hover:translate-x-1"}`}
+      className={`size-5 transition-transform duration-300 ${
+        diagonal
+          ? "group-hover:translate-x-1 group-hover:-translate-y-1"
+          : "group-hover:translate-x-1"
+      }`}
       fill="none"
       viewBox="0 0 24 24"
     >
@@ -69,76 +76,76 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
         strokeWidth="1.8"
       />
     </svg>
-  );
+  )
 }
 
 function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const dot = dotRef.current
+    const ring = ringRef.current
+    if (!dot || !ring) return
 
     const handleMove = (event: PointerEvent) => {
-      const position = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      dot.style.transform = position;
-      ring.style.transform = position;
+      const position = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
+      dot.style.transform = position
+      ring.style.transform = position
       const interactive = (event.target as Element | null)?.closest(
         "a, button, [role='button']",
-      );
-      ring.classList.toggle("cursor-hover", Boolean(interactive));
-      dot.classList.add("cursor-visible");
-      ring.classList.add("cursor-visible");
-    };
-    const handleDown = () => ring.classList.add("cursor-click");
-    const handleUp = () => ring.classList.remove("cursor-click");
+      )
+      ring.classList.toggle("cursor-hover", Boolean(interactive))
+      dot.classList.add("cursor-visible")
+      ring.classList.add("cursor-visible")
+    }
+    const handleDown = () => ring.classList.add("cursor-click")
+    const handleUp = () => ring.classList.remove("cursor-click")
     const handleLeave = () => {
-      dot.classList.remove("cursor-visible");
-      ring.classList.remove("cursor-visible");
-    };
+      dot.classList.remove("cursor-visible")
+      ring.classList.remove("cursor-visible")
+    }
 
-    window.addEventListener("pointermove", handleMove);
-    window.addEventListener("pointerdown", handleDown);
-    window.addEventListener("pointerup", handleUp);
-    document.documentElement.addEventListener("mouseleave", handleLeave);
+    window.addEventListener("pointermove", handleMove)
+    window.addEventListener("pointerdown", handleDown)
+    window.addEventListener("pointerup", handleUp)
+    document.documentElement.addEventListener("mouseleave", handleLeave)
     return () => {
-      window.removeEventListener("pointermove", handleMove);
-      window.removeEventListener("pointerdown", handleDown);
-      window.removeEventListener("pointerup", handleUp);
-      document.documentElement.removeEventListener("mouseleave", handleLeave);
-    };
-  }, []);
+      window.removeEventListener("pointermove", handleMove)
+      window.removeEventListener("pointerdown", handleDown)
+      window.removeEventListener("pointerup", handleUp)
+      document.documentElement.removeEventListener("mouseleave", handleLeave)
+    }
+  }, [])
 
   return (
     <>
       <div aria-hidden="true" className="custom-cursor-dot" ref={dotRef} />
       <div aria-hidden="true" className="custom-cursor-ring" ref={ringRef} />
     </>
-  );
+  )
 }
 
-type Certificate = (typeof certifications)[number];
+type Certificate = typeof certifications[number]
 
 function CertificateViewer({
   certificate,
   onClose,
 }: {
-  certificate: Certificate;
-  onClose: () => void;
+  certificate: Certificate
+  onClose: () => void
 }) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
+      if (event.key === "Escape") onClose()
+    }
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", handleKeyDown)
     return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onClose]);
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [onClose])
 
   return (
     <div
@@ -157,7 +164,9 @@ function CertificateViewer({
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#ef2b2d]">
               Original certificate
             </p>
-            <h3 className="mt-1 text-sm font-semibold md:text-base">{certificate.title}</h3>
+            <h3 className="mt-1 text-sm font-semibold md:text-base">
+              {certificate.title}
+            </h3>
           </div>
           <button
             aria-label="Close certificate viewer"
@@ -166,7 +175,12 @@ function CertificateViewer({
             onClick={onClose}
             type="button"
           >
-            <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
+            <svg
+              aria-hidden="true"
+              className="size-4"
+              fill="none"
+              viewBox="0 0 16 16"
+            >
               <path
                 d="m3 3 10 10M13 3 3 13"
                 stroke="currentColor"
@@ -185,11 +199,31 @@ function CertificateViewer({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default function App() {
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<Certificate | null>(null)
+  const [toastMessage, setToastMessage] = useState<string | null>(null)
+
+  const handleContactClick = (event?: React.MouseEvent) => {
+    if (event) event.preventDefault()
+
+    // Copy to clipboard
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(CONTACT_EMAIL).catch(() => {})
+    }
+
+    // Show toast feedback
+    setToastMessage(`Copied ${CONTACT_EMAIL} to clipboard!`)
+    setTimeout(() => {
+      setToastMessage(null)
+    }, 4500)
+
+    // Open Gmail web compose in a new tab
+    window.open(GMAIL_COMPOSE_URL, "_blank", "noopener,noreferrer")
+  }
 
   return (
     <>
@@ -214,12 +248,13 @@ export default function App() {
               <a className="nav-link" href="#about">
                 About
               </a>
-              <a
-                className="hidden rounded-full border border-[#ef2b2d] px-4 py-2 text-white transition hover:bg-[#ef2b2d] sm:block"
-                href="mailto:rspprof6827@gmail.com"
+              <button
+                className="hidden cursor-pointer rounded-full border border-[#ef2b2d] px-4 py-2 text-white transition hover:bg-[#ef2b2d] sm:block"
+                onClick={handleContactClick}
+                type="button"
               >
                 Start a project
-              </a>
+              </button>
             </div>
           </nav>
         </header>
@@ -247,7 +282,8 @@ export default function App() {
 
           <div className="mt-14 flex flex-col justify-between gap-8 border-t border-white/15 pt-5 md:flex-row md:items-end">
             <p className="max-w-md text-[17px] leading-[1.45] tracking-[-0.02em] text-white/70 md:text-xl">
-              I&apos;m Ponarassu, a multidisciplinary developer creating ideas to working models.
+              I&apos;m Ponarassu, a multidisciplinary developer creating ideas
+              to working models.
             </p>
             <a
               className="group flex items-center gap-3 self-start rounded-full bg-[#ef2b2d] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] transition hover:bg-white hover:text-black md:self-auto"
@@ -260,16 +296,20 @@ export default function App() {
 
         <div className="marquee border-y border-[#ef2b2d]/40 bg-[#b8151b] py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-white">
           <div>
-            Strategy — Identity — Digital — Art Direction — Experience — Strategy —
-            Identity — Digital — Art Direction — Experience —
+            Strategy — Identity — Digital — Art Direction — Experience —
+            Strategy — Identity — Digital — Art Direction — Experience —
           </div>
         </div>
 
-        <section id="work" className="bg-[#0e0d0d] px-5 py-24 text-[#f4eee9] md:px-10 md:py-32 lg:px-14">
+        <section
+          id="work"
+          className="bg-[#0e0d0d] px-5 py-24 text-[#f4eee9] md:px-10 md:py-32 lg:px-14"
+        >
           <div className="mx-auto max-w-[1332px]">
             <div className="mb-16 flex items-end justify-between border-b border-white/25 pb-6 md:mb-24">
               <h2 className="text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-                Selected <span className="font-serif italic text-[#ef2b2d]">work</span>
+                Selected{" "}
+                <span className="font-serif italic text-[#ef2b2d]">work</span>
               </h2>
               <span className="pb-1 text-xs font-semibold tracking-[0.16em] text-white/55">
                 Since 2025
@@ -280,11 +320,18 @@ export default function App() {
               {projects.map((project, index) => (
                 <article
                   key={project.title}
-                  className={`project-card group grid gap-8 border border-white/10 bg-[#131111] p-4 transition duration-500 hover:border-[#ef2b2d]/70 md:grid-cols-12 md:items-end md:gap-10 md:p-7 ${index % 2 ? "md:[&_.project-image]:order-2" : ""
-                    }`}
+                  className={`project-card group grid gap-8 border border-white/10 bg-[#131111] p-4 transition duration-500 hover:border-[#ef2b2d]/70 md:grid-cols-12 md:items-end md:gap-10 md:p-7 ${
+                    index % 2 ? "md:[&_.project-image]:order-2" : ""
+                  }`}
                 >
                   <div className="project-image md:col-span-8">
-                    <a className="block" href={project.url ?? `#${project.title.toLowerCase().replace(" ", "-")}`}>
+                    <a
+                      className="block"
+                      href={
+                        project.url ??
+                        `#${project.title.toLowerCase().replace(" ", "-")}`
+                      }
+                    >
                       <div className="relative aspect-[4/3] overflow-hidden bg-[#201010]">
                         <img
                           alt={project.alt}
@@ -324,7 +371,10 @@ export default function App() {
                     </p>
                     <a
                       className="mt-8 inline-flex items-center gap-3 border-b border-[#ef2b2d] pb-2 text-[11px] font-bold uppercase tracking-[0.14em]"
-                      href={project.url ?? `#${project.title.toLowerCase().replace(" ", "-")}`}
+                      href={
+                        project.url ??
+                        `#${project.title.toLowerCase().replace(" ", "-")}`
+                      }
                     >
                       Explore project <Arrow diagonal />
                     </a>
@@ -342,7 +392,8 @@ export default function App() {
           <div className="mx-auto max-w-[1332px]">
             <div className="mb-16 flex items-end justify-between border-b border-white/15 pb-6 md:mb-24">
               <h2 className="text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-                About <span className="font-serif italic text-[#ef2b2d]">me</span>
+                About{" "}
+                <span className="font-serif italic text-[#ef2b2d]">me</span>
               </h2>
               <span className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-white/45 sm:block">
                 Developer · Thinker · Maker
@@ -354,30 +405,26 @@ export default function App() {
                 <div className="lg:sticky lg:top-8">
                   <div className="portrait-frame relative aspect-[4/5] overflow-hidden bg-[#1a1111]">
                     <img
-                      alt="Ponarassu, independent creative Developer"
-                      className="h-full w-full object-cover object-center grayscale"
+                      alt="Ponarassu RS, independent creative Developer"
+                      className="h-full w-full object-cover object-center grayscale contrast-105"
                       loading="lazy"
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"
+                      src="/images/my-photo1.jpeg"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#8f0f14]/60 via-transparent to-transparent" />
                     <span className="absolute bottom-5 left-5 rounded-full bg-[#ef2b2d] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em]">
                       PONARASSU RS
                     </span>
                   </div>
-                  <a
-                    className="mt-3 inline-block text-[9px] tracking-wide text-white/30 transition hover:text-white/70"
-                    href="https://unsplash.com/@jawfox_photography"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Photo: Alexander Jawfox
-                  </a>
-                  <a
-                    className="group mt-7 flex items-center justify-between border-b border-[#ef2b2d] pb-3 text-[11px] font-bold uppercase tracking-[0.14em]"
-                    href="mailto:rspprof6827@gmail.com"
+                  <p className="mt-3 text-[10px] font-medium tracking-wide text-white/45">
+                    Based in Chennai, India · Open for collaborations
+                  </p>
+                  <button
+                    className="group mt-7 flex w-full cursor-pointer items-center justify-between border-b border-[#ef2b2d] pb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-left"
+                    onClick={handleContactClick}
+                    type="button"
                   >
                     Work with me <Arrow diagonal />
-                  </a>
+                  </button>
                 </div>
               </aside>
 
@@ -392,13 +439,13 @@ export default function App() {
                 <div className="mt-10 grid gap-7 text-[15px] leading-relaxed text-white/60 sm:grid-cols-2">
                   <p>
                     For over years, I&apos;ve helped founders and college clubs
-                    bring meaningful products and brands to life—from first sketch
-                    to final launch.
+                    bring meaningful products and brands to life—from first
+                    sketch to final launch.
                   </p>
                   <p>
-                    My practice sits between strategy and craft. I care about the
-                    tiny details, the big idea, and making the process feel clear,
-                    collaborative, and energising.
+                    My practice sits between strategy and craft. I care about
+                    the tiny details, the big idea, and making the process feel
+                    clear, collaborative, and energising.
                   </p>
                 </div>
 
@@ -436,7 +483,9 @@ export default function App() {
                       </p>
                     </div>
                     <div className="mt-8 border-l border-white/20 pl-5">
-                      <p className="text-lg font-semibold">Bachelor Of Technology</p>
+                      <p className="text-lg font-semibold">
+                        Bachelor Of Technology
+                      </p>
                       <p className="mt-2 text-sm text-white/50">
                         SRMIST Ramapuram · 2029
                       </p>
@@ -516,9 +565,10 @@ export default function App() {
             <p className="text-[11px] font-bold uppercase tracking-[0.18em]">
               Have something in mind?
             </p>
-            <a
-              className="group mt-8 flex items-end justify-between border-b-2 border-white pb-4"
-              href="mailto:rspprof6827@gmail.com"
+            <button
+              className="group mt-8 flex w-full cursor-pointer items-end justify-between border-b-2 border-white pb-4 text-left"
+              onClick={handleContactClick}
+              type="button"
             >
               <span className="text-[clamp(3.2rem,10vw,9rem)] font-medium leading-none tracking-[-0.07em]">
                 Let&apos;s talk.
@@ -526,19 +576,33 @@ export default function App() {
               <span className="mb-2 hidden rounded-full border border-white p-4 transition group-hover:rotate-45 group-hover:bg-white group-hover:text-[#a90f15] sm:block">
                 <Arrow diagonal />
               </span>
-            </a>
+            </button>
             <div className="mt-14 flex flex-col gap-6 text-[10px] font-bold uppercase tracking-[0.14em] sm:flex-row sm:items-center sm:justify-between">
               <span>© 2026 PONARASSU RS</span>
-              <div className="flex gap-7">
-                <a className="hover:underline" href="https://www.linkedin.com/in/ponarassu-rs-21b57536a/?isSelfProfile=true" rel="noreferrer" target="_blank">
+              <div className="flex items-center gap-7">
+                <a
+                  className="hover:underline"
+                  href="https://www.linkedin.com/in/ponarassu-rs-21b57536a/?isSelfProfile=true"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   LinkedIn
                 </a>
-                <a className="hover:underline" href="https://www.instagram.com/ponarassu._.subramanian/" rel="noreferrer" target="_blank">
+                <a
+                  className="hover:underline"
+                  href="https://www.instagram.com/ponarassu._.subramanian/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Instagram
                 </a>
-                <a className="hover:underline" href="mailto:rspprof6827@gmail.com">
+                <button
+                  className="cursor-pointer border-none bg-transparent p-0 text-[10px] font-bold uppercase tracking-[0.14em] text-white hover:underline"
+                  onClick={handleContactClick}
+                  type="button"
+                >
                   Email
-                </a>
+                </button>
               </div>
               <a className="hover:underline" href="#top">
                 Back to top ↑
@@ -553,6 +617,22 @@ export default function App() {
           onClose={() => setSelectedCertificate(null)}
         />
       )}
+      {toastMessage && (
+        <div
+          aria-live="polite"
+          className="toast-in fixed bottom-6 right-6 z-50 flex items-center gap-3.5 rounded-2xl border border-[#ef2b2d]/60 bg-[#161414]/95 px-5 py-3.5 text-sm text-[#f4eee9] shadow-2xl backdrop-blur-md"
+        >
+          <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#ef2b2d] text-xs font-black text-white">
+            ✓
+          </span>
+          <div>
+            <p className="font-semibold text-white">{toastMessage}</p>
+            <p className="text-[11px] text-white/50">
+              Opened Gmail compose in a new tab
+            </p>
+          </div>
+        </div>
+      )}
     </>
-  );
+  )
 }
